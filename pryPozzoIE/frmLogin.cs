@@ -10,11 +10,23 @@ using System.Windows.Forms;
 
 namespace pryPozzoIE
 {
-    public partial class Form1 : Form
+    public partial class frmLogin : Form
     {
-        public Form1()
+        public frmLogin()
         {
             InitializeComponent();
+        }
+
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        int contador = 0;
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
