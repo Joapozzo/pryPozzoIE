@@ -1,0 +1,6 @@
+Nº	Entidad	APERTURA	Nº EXPTE.	JUZG.	JURISD	DIRECCION	LIQUIDADOR RESPONSABLE
+1	Acuario Compañía de Seguros S.A.	24/2/1995	4707/1995	Comercial N° 2, Secretaría N° 3	CABA	M.T. Alvear 1840 2º piso	Dra. María Cristina Ubbriaco
+2	Aeta del Chaco Cooperativa de Seguros Ltda.	15/11/1979	7062/96	Civil y Comercial, 6ta. Nominación	Resistencia-Chaco	Lopez y Planes 48. PA	Sr. Ricardo Crosetto
+3	Alfa Compañía Argentina de Seguros S.A.	6/7/1994	3800416/93	Comercial N° 19, Secretaría N° 38	CABA	M.T. Alvear 1840 2º piso	Dra. María Alejandra Spagnolo
+4	Ancora Compañía Argentina de seguros S.A.	27/6/1995	38036/1995	Comercial N° 16, Secretaría N° 31	CABA	M.T. Alvear 1840	Dra. María Cristina Ubbriaco
+5	Apolo Compañía de Seguros S.A.	30/11/1989	45369/2008	Comercial N° 24, Secretaría N° 47	CABA	M.T. Alvear 1840 2º	Cont. Orlando Marcelo Suarez

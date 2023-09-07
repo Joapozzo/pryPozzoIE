@@ -24,10 +24,15 @@ namespace pryPozzoIE
             if (contadorTiempo > 3000)
             {
                 this.Hide();
-                frmMain formularioMain = new frmMain();
-                formularioMain.Show();
+                frmLogin formularioLoguin = new frmLogin();
+                formularioLoguin.Show();
                 timer1.Enabled = false;
             }
+
+        }
+
+        private void frmLogoEmpresa_Load(object sender, EventArgs e)
+        {
 
         }
     }
