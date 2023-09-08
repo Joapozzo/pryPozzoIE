@@ -53,5 +53,11 @@ namespace pryPozzoIE
 
             sw.Close();
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            clsUser objUser = new clsUser();
+            lblUsuario.Text = objUser.User;
+        }
     }
 }

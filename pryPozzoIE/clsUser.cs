@@ -8,9 +8,16 @@ namespace pryPozzoIE
 {
     internal class clsUser
     {
-        public int Id { get; set; }
+        public string User { get; set; }
 
+        // Guardar datos del usuario ingresado
+        public void saveUser(string userLog) 
+        {
+            userLog = User;
+        } 
 
         //procedimiento validar usuario y contraseña
+
+
     }
 }

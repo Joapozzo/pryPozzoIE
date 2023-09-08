@@ -18,21 +18,16 @@ namespace pryPozzoIE
             InitializeComponent();
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtContraseña_TextChanged(object sender, EventArgs e)
         {
-            if (txtContraseña.Text !="")
-            {
-                btnLogin.Enabled = true;
-            }
-            else
-            {
-                btnLogin.Enabled = false;
-            }
+            //if (txtContraseña.Text !="")
+            //{
+            //    btnLogin.Enabled = true;
+            //}
+            //else
+            //{
+            //    btnLogin.Enabled = false;
+            //}
         }
 
         private void txtUsuario_TextChanged(object sender, EventArgs e)
@@ -48,27 +43,18 @@ namespace pryPozzoIE
 
         }
 
-        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //// Verificar si la tecla presionada es una letra o una tecla de control.
-            //if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
-            //{
-            //    // Si no es una letra ni una tecla de control, se suprime la entrada.
-            //    e.Handled = true;
-            //}
-        }
-
+        int intentos = 0;
+        bool inicioSesionExitoso = false;
+        string usuarioIngresado;
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
-            //si el usuario y pass son correctos
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
-
             // Ruta del archivo que contiene los datos de usuario y contraseña
             string archivoUsuarios = "usuarios.txt";
+            bool inicioSesionExitoso = false; // Variable para controlar si se inició sesión correctamente
+
             // Verificar si el archivo existe
-            int intentos = 0;
             if (File.Exists(archivoUsuarios))
             {
                 using (StreamReader sr = new StreamReader(archivoUsuarios))
@@ -87,18 +73,17 @@ namespace pryPozzoIE
                             // Verificar si los datos coinciden
                             if (usuario == usuarioArchivo && contraseña == contraseñaArchivo && intentos < 3)
                             {
-                                MessageBox.Show("Inicio de sesión válido.");
+                                clsUser objUser = new clsUser();
+                                
+                                usuarioIngresado = partes[0];
+
+                                objUser.saveUser(usuarioIngresado);
+                                MessageBox.Show("Inicio de sesión válido.", "Bienvenido", MessageBoxButtons.OK);
+                                registerLog();
                                 this.Hide();
                                 frmMain forMain = new frmMain();
                                 forMain.ShowDialog();
-                                break;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Usuario o contraseña incorrectos.");
-                                intentos = intentos + 1;
-                                MessageBox.Show(intentos + " de 3 intentos");
-                                clearText();
+                                inicioSesionExitoso = true;
                                 break;
                             }
                         }
@@ -110,19 +95,47 @@ namespace pryPozzoIE
                 MessageBox.Show("El archivo de usuarios no existe.");
             }
 
-            //registro de log
+            if (!inicioSesionExitoso && intentos < 3)
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK ,MessageBoxIcon.Error);
+                intentos++;
+                MessageBox.Show(intentos + " de 3 intentos");
+                clearText();
+            }
+
+            if (!inicioSesionExitoso && intentos >= 3)
+            {
+                MessageBox.Show("Usted se ha quedado sin intentos, por favor espere " + (contador.Interval / 1000) + " segundos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUsuario.Enabled = false;
+                txtContraseña.Enabled = false;
+                btnLogin.Enabled = false;
+
+                contador.Tick += contador_Tick;
+                contador.Start();
+            }
+        }
+
+        public void registerLog() 
+        {
             StreamWriter sw = new StreamWriter("logInicio", true);
 
             sw.WriteLine(txtUsuario.Text + " - Fecha: " + DateTime.Now);
 
             sw.Close();
         }
-
         public void clearText() 
         {
             txtContraseña.Text = "";
             txtUsuario.Text = "";
         }
-
+        private void contador_Tick(object sender, EventArgs e)
+        {
+            // Habilitar el botón y detener el temporizador.
+            intentos = 0;
+            txtUsuario.Enabled = true;
+            txtContraseña.Enabled = true;
+            btnLogin.Enabled = true;
+            contador.Stop();
+        }
     }
 }
