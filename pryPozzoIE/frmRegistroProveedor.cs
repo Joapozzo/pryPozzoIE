@@ -68,5 +68,31 @@ namespace pryPozzoIE
             string selectedFolderPath = Path.Combine(@"D:\Escritorio\Repo\pryPozzoIE\Resources", selectedNode.FullPath);
             LoadSubfoldersAndFiles(selectedFolderPath, selectedNode);
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmRegistroProveedor_Load(object sender, EventArgs e)
+        {
+
+            StreamReader rd = new StreamReader();
+        }
     }
 }

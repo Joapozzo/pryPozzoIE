@@ -50,11 +50,9 @@ namespace pryPozzoIE
         {
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
-            // Ruta del archivo que contiene los datos de usuario y contraseña
             string archivoUsuarios = "usuarios.txt";
-            bool inicioSesionExitoso = false; // Variable para controlar si se inició sesión correctamente
+            bool inicioSesionExitoso = false;
 
-            // Verificar si el archivo existe
             if (File.Exists(archivoUsuarios))
             {
                 using (StreamReader sr = new StreamReader(archivoUsuarios))
@@ -62,7 +60,7 @@ namespace pryPozzoIE
                     string linea;
                     while ((linea = sr.ReadLine()) != null)
                     {
-                        // Dividir la línea en usuario y contraseña
+                        
                         string[] partes = linea.Split(':');
 
                         if (partes.Length == 2)
@@ -70,7 +68,7 @@ namespace pryPozzoIE
                             string usuarioArchivo = partes[0];
                             string contraseñaArchivo = partes[1];
 
-                            // Verificar si los datos coinciden
+                            
                             if (usuario == usuarioArchivo && contraseña == contraseñaArchivo && intentos < 3)
                             {
                                 clsUser objUser = new clsUser();
@@ -136,6 +134,11 @@ namespace pryPozzoIE
             txtContraseña.Enabled = true;
             btnLogin.Enabled = true;
             contador.Stop();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
