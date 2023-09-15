@@ -12,22 +12,41 @@ using System.IO;
 
 namespace pryPozzoIE
 {
-    public partial class frmMain : Form
+    internal partial class frmMain : Form
     {
-        public frmMain()
+
+        public clsUser usuarioActual;
+
+        public frmMain(clsUser usuarioActual)
         {
             InitializeComponent();
+
+            if (usuarioActual != null)
+            {
+                this.usuarioActual = usuarioActual; // Usa 'this' para referenciar la variable miembro
+            }
+            else
+            {
+                // Maneja el caso en el que usuarioActual sea null si es necesario
+            }
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            if (usuarioActual != null)
+            {
+                lblUsuarioMain.Text = usuarioActual.UserName;
+            }
         }
 
         int contador = 0;
-
         private void timer1_Tick(object sender, EventArgs e)
         {   
             contador += 1;
 
             if (contador > 1)
             {
-                toolStripStatusLabel2.Text = Convert.ToString(DateTime.Now.ToString("HH:mm:ss"));
+                lblDateMenu.Text = Convert.ToString(DateTime.Now.ToString("HH:mm:ss"));
             }
 
         }
@@ -37,7 +56,7 @@ namespace pryPozzoIE
             //registro de log
             StreamWriter sw = new StreamWriter("logGeneral", true);
 
-            sw.WriteLine(lblUsuario.Text + " - Fecha: " + DateTime.Now + " - Accede: " + menuActivo.Text );
+            sw.WriteLine(lblUsuarioMain.Text + " - Fecha: " + DateTime.Now + " - Accede: " + menuActivo.Text );
 
             sw.Close();
 
@@ -50,15 +69,10 @@ namespace pryPozzoIE
             //Registro
             StreamWriter sw = new StreamWriter("logGeneral", true);
 
-            sw.WriteLine(lblUsuario.Text + " - Fecha: " + DateTime.Now + " - Accede: " + registroProeedor.Text);
+            sw.WriteLine(lblUsuarioMain.Text + " - Fecha: " + DateTime.Now + " - Accede: " + registroProeedor.Text);
 
             sw.Close();
 
-
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
 
         }
     }

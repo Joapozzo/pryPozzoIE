@@ -1,2 +1,2 @@
-user:123
-pozzo:1234
+user:123:adm
+pozzo:1234:emp

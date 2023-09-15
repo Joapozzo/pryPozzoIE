@@ -18,81 +18,79 @@ namespace pryPozzoIE
         {
             InitializeComponent();
         }
-
-        private void InitializeTreeView()
+        private void frmRegistroProveedor_Load(object sender, EventArgs e)
         {
-            // Establecer la carpeta raíz
-            string rootFolderPath = @"D:\Escritorio\Repo\pryPozzoIE\Resources";
+            string archivoProveedor = "Listado de aseguradores.csv";
 
-            // Crear el nodo raíz
-            TreeNode rootNode = new TreeNode("Resources");
-            treeView1.Nodes.Add(rootNode);
-
-            // Cargar las subcarpetas y archivos de la carpeta raíz
-            LoadSubfoldersAndFiles(rootFolderPath, rootNode);
-        }
-
-        private void LoadSubfoldersAndFiles(string folderPath, TreeNode parentNode)
-        {
             try
             {
-                // Obtener la lista de subcarpetas y archivos en la carpeta actual
-                string[] subdirectories = Directory.GetDirectories(folderPath);
-                string[] files = Directory.GetFiles(folderPath);
-
-                // Agregar las subcarpetas como nodos secundarios
-                foreach (string subdirectory in subdirectories)
+                using (StreamReader sr = new StreamReader(archivoProveedor))
                 {
-                    TreeNode subfolderNode = new TreeNode(Path.GetFileName(subdirectory));
-                    parentNode.Nodes.Add(subfolderNode);
-                }
+                    string readLine = sr.ReadLine();
+                    if (readLine != null)
+                    {
+                        string[] separador = readLine.Split(';');
 
-                // Agregar los archivos como nodos secundarios
-                foreach (string file in files)
-                {
-                    TreeNode fileNode = new TreeNode(Path.GetFileName(file));
-                    parentNode.Nodes.Add(fileNode);
+                        foreach (string columna in separador)
+                        {
+                            dgvDatosRegistro.Columns.Add(columna, columna);
+                        }
+
+                        HashSet<string> jurisdiccionesUnicas = new HashSet<string>();
+                        HashSet<string> responsablesUnicos = new HashSet<string>();
+
+
+                        while (!sr.EndOfStream)
+                        {
+                            readLine = sr.ReadLine();
+                            separador = readLine.Split(';');
+                            dgvDatosRegistro.Rows.Add(separador);
+
+                            jurisdiccionesUnicas.Add(separador[5]);
+                            responsablesUnicos.Add(separador[7]);
+
+
+                        }
+
+                        //Carga de jurisdiccions unicas sin repetir
+                        foreach (string jurisdiccion in jurisdiccionesUnicas)
+                        {
+                            cmbJurisdiccion.Items.Add(jurisdiccion);
+                        }
+
+                        foreach (string responsable in responsablesUnicos)
+                        {
+                            cmbResponsable.Items.Add(responsable);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // Manejar errores, si es necesario
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void txtNumeroRegistro_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Al seleccionar un nodo, cargar las subcarpetas y archivos dentro de esa carpeta
-            TreeNode selectedNode = e.Node;
-            string selectedFolderPath = Path.Combine(@"D:\Escritorio\Repo\pryPozzoIE\Resources", selectedNode.FullPath);
-            LoadSubfoldersAndFiles(selectedFolderPath, selectedNode);
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            int Numero = int.Parse(txtNumeroRegistro.Text);
+            string Entidad = txtEntidad.Text;
+            int Expediente = int.Parse(txtNumExpediente.Text);
+            string Jurisdiccion = cmbJurisdiccion.Text;
+            string Direccion = txtDireccion.Text;
+            string Liquidador = cmbResponsable.Text;
+            DateTime fechaApertura = dtpApertura.Value;
 
-        }
-
-        private void frmRegistroProveedor_Load(object sender, EventArgs e)
-        {
-
-            StreamReader rd = new StreamReader();
+            clsRegistroProveedor registroProveedor = new clsRegistroProveedor();
+            registroProveedor.Registrar(Numero, Entidad, fechaApertura, Expediente, Jurisdiccion, Direccion, Liquidador);
         }
     }
 }
