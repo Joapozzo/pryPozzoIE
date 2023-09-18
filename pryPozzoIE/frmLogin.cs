@@ -87,5 +87,10 @@ namespace pryPozzoIE
             btnLogin.Enabled = true;
             contador.Stop();
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

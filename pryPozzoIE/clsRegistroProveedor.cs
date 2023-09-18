@@ -10,7 +10,7 @@ namespace pryPozzoIE
 {
     internal class clsRegistroProveedor
     {
-        public void Registrar(Int32 id, string entidad, DateTime apertura, int expediente, string juri, string direccion, string liquidador)
+        public void Registrar(Int32 id, string entidad, DateTime apertura, int expediente, string juzg, string juri, string direccion, string liquidador)
         {
             string archivoProveedor = "Listado de aseguradores.csv";
 
@@ -38,14 +38,7 @@ namespace pryPozzoIE
                 // Verificar si el ID ya existe en la lista de IDs existentes
                 if (!idsExistentes.Contains(id))
                 {
-                    // El ID no existe, puedes agregar el nuevo registro aquí
-                    // Debes decidir cómo deseas agregar el registro al archivo CSV
-                    // Esto podría requerir abrir el archivo en modo escritura y agregar el nuevo registro.
-                    // No puedo proporcionar el código exacto sin más detalles sobre el formato del archivo CSV y cómo deseas agregar registros.
-
-                    // Por ejemplo, si tu archivo CSV tiene un formato similar a "ID;Entidad;Apertura;Expediente;Jurisdicción;Dirección;Liquidador",
-                    // podrías agregar el registro de la siguiente manera:
-                    string nuevoRegistro = $"{id};{entidad};{apertura};{expediente};{juri};{direccion};{liquidador}";
+                    string nuevoRegistro = $"{id};{entidad};{apertura};{expediente};{juzg};{juri};{direccion};{liquidador}";
 
                     using (StreamWriter sw = new StreamWriter(archivoProveedor, true))
                     {

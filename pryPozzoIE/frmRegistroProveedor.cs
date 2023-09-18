@@ -20,7 +20,13 @@ namespace pryPozzoIE
         }
         private void frmRegistroProveedor_Load(object sender, EventArgs e)
         {
+            cargarGrilla();
+        }
+
+        private void cargarGrilla()
+        {
             string archivoProveedor = "Listado de aseguradores.csv";
+            dgvDatosRegistro.Rows.Clear();
 
             try
             {
@@ -38,6 +44,8 @@ namespace pryPozzoIE
 
                         HashSet<string> jurisdiccionesUnicas = new HashSet<string>();
                         HashSet<string> responsablesUnicos = new HashSet<string>();
+                        HashSet<string> juzgadosUnicos = new HashSet<string>();
+
 
 
                         while (!sr.EndOfStream)
@@ -46,9 +54,9 @@ namespace pryPozzoIE
                             separador = readLine.Split(';');
                             dgvDatosRegistro.Rows.Add(separador);
 
+                            juzgadosUnicos.Add(separador[4]);
                             jurisdiccionesUnicas.Add(separador[5]);
                             responsablesUnicos.Add(separador[7]);
-
 
                         }
 
@@ -62,6 +70,11 @@ namespace pryPozzoIE
                         {
                             cmbResponsable.Items.Add(responsable);
                         }
+
+                        foreach (string juzgado in juzgadosUnicos)
+                        {
+                            cmbJuzgado.Items.Add(juzgado);
+                        }
                     }
                 }
             }
@@ -69,6 +82,11 @@ namespace pryPozzoIE
             {
                 MessageBox.Show("Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void limpiarGrilla()
+        {
+            dgvDatosRegistro.Rows.Clear();
         }
 
         private void txtNumeroRegistro_KeyPress(object sender, KeyPressEventArgs e)
@@ -84,13 +102,16 @@ namespace pryPozzoIE
             int Numero = int.Parse(txtNumeroRegistro.Text);
             string Entidad = txtEntidad.Text;
             int Expediente = int.Parse(txtNumExpediente.Text);
+            string Juzgado = cmbJuzgado.Text;
             string Jurisdiccion = cmbJurisdiccion.Text;
             string Direccion = txtDireccion.Text;
             string Liquidador = cmbResponsable.Text;
             DateTime fechaApertura = dtpApertura.Value;
 
             clsRegistroProveedor registroProveedor = new clsRegistroProveedor();
-            registroProveedor.Registrar(Numero, Entidad, fechaApertura, Expediente, Jurisdiccion, Direccion, Liquidador);
+            registroProveedor.Registrar(Numero, Entidad, fechaApertura, Expediente, Juzgado, Jurisdiccion, Direccion, Liquidador);
+            cargarGrilla();
+
         }
     }
 }

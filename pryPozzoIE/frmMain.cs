@@ -66,6 +66,10 @@ namespace pryPozzoIE
 
         private void activosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            frmRegistroProveedor fProveedor = new frmRegistroProveedor();
+            fProveedor.ShowDialog();
+
             //Registro
             StreamWriter sw = new StreamWriter("logGeneral", true);
 

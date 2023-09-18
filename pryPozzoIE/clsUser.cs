@@ -13,7 +13,6 @@ namespace pryPozzoIE
         //Guardamos datos del usuario actual
         public string User { get; set; }
         public string Password { get; set; }
-
         public string UserName { get; set; }
 
         //procedimiento validar usuario y contraseña
@@ -30,7 +29,7 @@ namespace pryPozzoIE
                     {
                         string[] partes = linea.Split(':');
 
-                        if (partes.Length == 2)
+                        if (partes.Length == 3)
                         {
                             string usuarioArchivo = partes[0];
                             string contraseñaArchivo = partes[1];
