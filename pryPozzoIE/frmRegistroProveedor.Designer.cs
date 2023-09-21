@@ -230,6 +230,7 @@
             this.btnModificar.TabIndex = 3;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnCancelar
             // 
@@ -255,8 +256,10 @@
             this.dgvDatosRegistro.Location = new System.Drawing.Point(27, 245);
             this.dgvDatosRegistro.Name = "dgvDatosRegistro";
             this.dgvDatosRegistro.RowHeadersWidth = 51;
+            this.dgvDatosRegistro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatosRegistro.Size = new System.Drawing.Size(794, 221);
             this.dgvDatosRegistro.TabIndex = 6;
+            this.dgvDatosRegistro.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDatosRegistro_CellMouseDoubleClick);
             // 
             // frmRegistroProveedor
             // 

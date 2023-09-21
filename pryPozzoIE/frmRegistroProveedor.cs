@@ -113,5 +113,47 @@ namespace pryPozzoIE
             cargarGrilla();
 
         }
+
+        private void dgvDatosRegistro_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = dgvDatosRegistro.Rows[e.RowIndex];
+
+                string numeroRegistro = selectedRow.Cells[0].Value.ToString();
+                string entidad = selectedRow.Cells[1].Value.ToString();
+                DateTime apertura = DateTime.Parse(selectedRow.Cells[2].Value.ToString());
+                string numExpediente = selectedRow.Cells[3].Value.ToString();
+                string juzgado = selectedRow.Cells[4].Value.ToString();
+                string jurisdiccion = selectedRow.Cells[5].Value.ToString();
+                string direccion = selectedRow.Cells[6].Value.ToString();
+                string responsable = selectedRow.Cells[7].Value.ToString();
+
+                txtNumeroRegistro.Text = numeroRegistro;
+                txtEntidad.Text = entidad;
+                dtpApertura.Value = apertura;
+                txtNumExpediente.Text = numExpediente;
+                cmbJuzgado.Text = juzgado;
+                cmbJurisdiccion.Text = jurisdiccion;
+                txtDireccion.Text = direccion;
+                cmbResponsable.Text = responsable;
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            int Numero = int.Parse(txtNumeroRegistro.Text);
+            string Entidad = txtEntidad.Text;
+            string Expediente = txtNumExpediente.Text;
+            string Juzgado = cmbJuzgado.Text;
+            string Jurisdiccion = cmbJurisdiccion.Text;
+            string Direccion = txtDireccion.Text;
+            string Liquidador = cmbResponsable.Text;
+            DateTime fechaApertura = dtpApertura.Value;
+            clsRegistroProveedor registroProveedor = new clsRegistroProveedor();
+            registroProveedor.Modificar(Numero, Entidad, fechaApertura, Expediente, Juzgado, Jurisdiccion, Direccion, Liquidador);
+            cargarGrilla();
+
+        }
     }
 }

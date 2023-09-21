@@ -29,7 +29,6 @@ namespace pryPozzoIE
                         // Verificar si se pueden convertir los elementos de la línea a los tipos adecuados
                         if (separador.Length >= 1 && int.TryParse(separador[0], out int existingID))
                         {
-                            // Agregar el ID a la lista de IDs existentes
                             idsExistentes.Add(existingID);
                         }
                     }
@@ -53,6 +52,32 @@ namespace pryPozzoIE
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void Modificar(Int32 id, string entidad, DateTime apertura, string expediente, string juzg, string juri, string direccion, string liquidador)
+        {
+
+            string archivoProveedor = "Listado de aseguradores.csv";
+            
+
+            try
+            {
+                using (StreamWriter lector = new StreamWriter(archivoProveedor, true))
+                {
+                    string nuevoRegistro = $"{id};{entidad};{apertura};{expediente};{juzg};{juri};{direccion};{liquidador}";
+                    lector.WriteLine(nuevoRegistro);
+                    
+                }
+
+                StreamWriter sw = new StreamWriter(archivoProveedor);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
