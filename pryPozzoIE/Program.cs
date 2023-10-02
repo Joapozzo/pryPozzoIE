@@ -16,7 +16,7 @@ namespace pryPozzoIE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmRegistroProveedor());
+            Application.Run(new frmLogoEmpresa());
         }
     }
 }

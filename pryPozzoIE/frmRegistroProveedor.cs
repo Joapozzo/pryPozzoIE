@@ -153,7 +153,23 @@ namespace pryPozzoIE
             clsRegistroProveedor registroProveedor = new clsRegistroProveedor();
             registroProveedor.Modificar(Numero, Entidad, fechaApertura, Expediente, Juzgado, Jurisdiccion, Direccion, Liquidador);
             cargarGrilla();
+        }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int Numero = int.Parse(txtNumeroRegistro.Text);
+            string Entidad = txtEntidad.Text;
+            string Expediente = txtNumExpediente.Text;
+            string Juzgado = cmbJuzgado.Text;
+            string Jurisdiccion = cmbJurisdiccion.Text;
+            string Direccion = txtDireccion.Text;
+            string Liquidador = cmbResponsable.Text;
+            DateTime fechaApertura = dtpApertura.Value;
+            clsRegistroProveedor registroProveedor = new clsRegistroProveedor();
+            registroProveedor.Eliminar(Numero);
+            cargarGrilla();
         }
     }
+
+        
 }

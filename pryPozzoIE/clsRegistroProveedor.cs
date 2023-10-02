@@ -57,27 +57,110 @@ namespace pryPozzoIE
 
         public void Modificar(Int32 id, string entidad, DateTime apertura, string expediente, string juzg, string juri, string direccion, string liquidador)
         {
-
             string archivoProveedor = "Listado de aseguradores.csv";
-            
 
             try
             {
-                using (StreamWriter lector = new StreamWriter(archivoProveedor, true))
+                List<string> lineas = new List<string>();
+                bool primerLinea = true;
+
+                using (StreamReader lector = new StreamReader(archivoProveedor))
                 {
-                    string nuevoRegistro = $"{id};{entidad};{apertura};{expediente};{juzg};{juri};{direccion};{liquidador}";
-                    lector.WriteLine(nuevoRegistro);
-                    
+                    string readLine;
+                    while ((readLine = lector.ReadLine()) != null)
+                    {
+                        string[] separador = readLine.Split(';');
+
+                        if (separador.Length > 0 && int.TryParse(separador[0], out int existingID))
+                        {
+                            if (existingID == id)
+                            {
+                                string nuevaLinea = $"{id};{entidad};{apertura};{expediente};{juzg};{juri};{direccion};{liquidador}";
+                                lineas.Add(nuevaLinea);
+                            }
+                            else
+                            {
+                                lineas.Add(readLine);
+                            }
+                        }
+                    }
                 }
 
-                StreamWriter sw = new StreamWriter(archivoProveedor);
-
+                // Escribe las líneas en el archivo original
+                using (StreamWriter sw = new StreamWriter(archivoProveedor, false))
+                {
+                    foreach (string linea in lineas)
+                    {
+                        // Agregar la primera línea con los títulos de las columnas
+                        if (primerLinea)
+                        {
+                            sw.WriteLine(linea);
+                            primerLinea = false;
+                        }
+                        else
+                        {
+                            sw.WriteLine(linea);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Error al modificar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                MessageBox.Show("Error al cargar el archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        public void Eliminar(Int32 id)
+        {
+            string archivoProveedor = "Listado de aseguradores.csv";
 
+            try
+            {
+                List<string> lineas = new List<string>();
+                bool primerLinea = true; // Para mantener la primera línea con los títulos de las columnas
+
+                using (StreamReader lector = new StreamReader(archivoProveedor))
+                {
+                    string readLine;
+                    while ((readLine = lector.ReadLine()) != null)
+                    {
+                        string[] separador = readLine.Split(';');
+
+                        if (separador.Length > 0 && int.TryParse(separador[0], out int existingID))
+                        {
+                            if (existingID == id)
+                            {
+                                // No agregamos esta línea, lo que equivale a eliminar el registro
+                            }
+                            else
+                            {
+                                lineas.Add(readLine);
+                            }
+                        }
+                    }
+                }
+
+                // Escribe las líneas en el archivo original
+                using (StreamWriter sw = new StreamWriter(archivoProveedor, false))
+                {
+                    foreach (string linea in lineas)
+                    {
+                        // Agregar la primera línea con los títulos de las columnas
+                        if (primerLinea)
+                        {
+                            sw.WriteLine(linea);
+                            primerLinea = false;
+                        }
+                        else
+                        {
+                            sw.WriteLine(linea);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al borrar el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
