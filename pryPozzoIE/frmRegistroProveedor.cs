@@ -50,14 +50,13 @@ namespace pryPozzoIE
 
                         while (!sr.EndOfStream)
                         {
-                            readLine = sr.ReadLine();
                             separador = readLine.Split(';');
                             dgvDatosRegistro.Rows.Add(separador);
 
                             juzgadosUnicos.Add(separador[4]);
                             jurisdiccionesUnicas.Add(separador[5]);
                             responsablesUnicos.Add(separador[7]);
-
+                            readLine = sr.ReadLine();
                         }
 
                         //Carga de jurisdiccions unicas sin repetir
