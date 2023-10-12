@@ -27,6 +27,7 @@ namespace pryPozzoIE
         {
             string archivoProveedor = "Listado de aseguradores.csv";
             dgvDatosRegistro.Rows.Clear();
+            bool primeraLinea = true;
 
             try
             {
@@ -35,12 +36,8 @@ namespace pryPozzoIE
                     string readLine = sr.ReadLine();
                     if (readLine != null)
                     {
+                        readLine = sr.ReadLine();
                         string[] separador = readLine.Split(';');
-
-                        foreach (string columna in separador)
-                        {
-                            dgvDatosRegistro.Columns.Add(columna, columna);
-                        }
 
                         HashSet<string> jurisdiccionesUnicas = new HashSet<string>();
                         HashSet<string> responsablesUnicos = new HashSet<string>();
@@ -53,9 +50,12 @@ namespace pryPozzoIE
                             separador = readLine.Split(';');
                             dgvDatosRegistro.Rows.Add(separador);
 
+                            
+
                             juzgadosUnicos.Add(separador[4]);
                             jurisdiccionesUnicas.Add(separador[5]);
                             responsablesUnicos.Add(separador[7]);
+
                             readLine = sr.ReadLine();
                         }
 
@@ -167,6 +167,7 @@ namespace pryPozzoIE
             clsRegistroProveedor registroProveedor = new clsRegistroProveedor();
             registroProveedor.Eliminar(Numero);
             cargarGrilla();
+
         }
     }
 

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
+using System.Data.OleDb;
 
 namespace pryPozzoIE
 {
@@ -14,6 +16,15 @@ namespace pryPozzoIE
         public string User { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
+
+        public void ConectarBase() 
+        {
+            OleDbConnection conn =  new OleDbConnection();
+            OleDbCommand command = new OleDbCommand();
+
+            conn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\myFolder\myAccessFile.accdb;Persist Security Info=False;"
+
+        }
 
         //procedimiento validar usuario y contraseña
         public static bool Login(string usuario, string contraseña)

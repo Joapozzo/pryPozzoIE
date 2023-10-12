@@ -86,21 +86,11 @@ namespace pryPozzoIE
                     }
                 }
 
-                // Escribe las líneas en el archivo original
                 using (StreamWriter sw = new StreamWriter(archivoProveedor, false))
                 {
                     foreach (string linea in lineas)
                     {
-                        // Agregar la primera línea con los títulos de las columnas
-                        if (primerLinea)
-                        {
-                            sw.WriteLine(linea);
-                            primerLinea = false;
-                        }
-                        else
-                        {
-                            sw.WriteLine(linea);
-                        }
+                        sw.WriteLine(linea);
                     }
                 }
             }
