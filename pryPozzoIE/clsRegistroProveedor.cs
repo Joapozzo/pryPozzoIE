@@ -62,7 +62,6 @@ namespace pryPozzoIE
             try
             {
                 List<string> lineas = new List<string>();
-                bool primerLinea = true;
 
                 using (StreamReader lector = new StreamReader(archivoProveedor))
                 {

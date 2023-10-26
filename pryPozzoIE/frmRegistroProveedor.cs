@@ -25,10 +25,8 @@ namespace pryPozzoIE
 
         private void cargarGrilla()
         {
-            string archivoProveedor = "Listado de aseguradores.csv";
+            string archivoProveedor = @"../../archivos/Listado de aseguradores.csv";
             dgvDatosRegistro.Rows.Clear();
-            bool primeraLinea = true;
-
             try
             {
                 using (StreamReader sr = new StreamReader(archivoProveedor))

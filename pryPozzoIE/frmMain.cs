@@ -23,13 +23,15 @@ namespace pryPozzoIE
 
             if (usuarioActual != null)
             {
-                this.usuarioActual = usuarioActual; // Usa 'this' para referenciar la variable miembro
+                this.usuarioActual = usuarioActual;
             }
             else
             {
                 // Maneja el caso en el que usuarioActual sea null si es necesario
             }
         }
+
+
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -53,31 +55,21 @@ namespace pryPozzoIE
 
         private void activosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //registro de log
-            StreamWriter sw = new StreamWriter("logGeneral", true);
-
-            sw.WriteLine(lblUsuarioMain.Text + " - Fecha: " + DateTime.Now + " - Accede: " + menuActivo.Text );
-
-            sw.Close();
-
-            frmRegistroProveedor f = new frmRegistroProveedor();
-            f.ShowDialog();
+            //string ventana = menuActivo.Text;
+            //string user = usuarioActual.UserName;
+            //clsUser objMenuClick = new clsUser();
+            //objMenuClick.MenuLog(user, ventana);
         }
 
         private void activosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmRegistroProveedor frmRegProv = new frmRegistroProveedor();
+            frmRegProv.ShowDialog();
 
-            frmRegistroProveedor fProveedor = new frmRegistroProveedor();
-            fProveedor.ShowDialog();
-
-            //Registro
-            StreamWriter sw = new StreamWriter("logGeneral", true);
-
-            sw.WriteLine(lblUsuarioMain.Text + " - Fecha: " + DateTime.Now + " - Accede: " + registroProeedor.Text);
-
-            sw.Close();
-
-
+            string ventana = registroProeedor.Text;
+            string user = usuarioActual.UserName;
+            clsUser objMenuClick = new clsUser();
+            objMenuClick.MenuLog(); 
         }
     }
 }

@@ -49,8 +49,6 @@ namespace pryPozzoIE
                 usuarioActual.UserName = usuario;
 
                 clsUser.RegisterLog(usuario);
-                MessageBox.Show("Inicio de sesión válido.", "Bienvenido", MessageBoxButtons.OK);
-                this.Hide();
                 frmMain forMain = new frmMain(usuarioActual);
                 forMain.ShowDialog();
             }
