@@ -37,19 +37,13 @@ namespace pryPozzoIE
             string usuario = txtUsuario.Text;
             string contraseña = txtContraseña.Text;
 
-            if (clsUser.Login(usuario, contraseña))
+            clsUser objUser = clsUser.Login(usuario, contraseña);
+
+            if (objUser != null)
             {
-
-                clsUser usuarioActual = new clsUser
-                {
-                    User = usuario,
-                    Password = contraseña
-                };
-
-                usuarioActual.UserName = usuario;
-
                 clsUser.RegisterLog(usuario);
-                frmMain forMain = new frmMain(usuarioActual);
+                this.Hide();
+                frmMain forMain = new frmMain(objUser);
                 forMain.ShowDialog();
             }
             else
@@ -71,6 +65,8 @@ namespace pryPozzoIE
                 }
             }
         }
+
+
         public void clearText() 
         {
             txtContraseña.Text = "";

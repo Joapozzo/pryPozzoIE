@@ -32,7 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gestiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registroProeedor = new System.Windows.Forms.ToolStripMenuItem();
+            this.registroProveedor = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoReportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proovedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuActivo = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,8 +53,8 @@
             this.listadoReportesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -69,18 +69,17 @@
             // proveedoresToolStripMenuItem
             // 
             this.proveedoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registroProeedor});
+            this.registroProveedor});
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
             this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.proveedoresToolStripMenuItem.Text = "Proveedor";
-            //this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
-            // registroProeedor
+            // registroProveedor
             // 
-            this.registroProeedor.Name = "registroProeedor";
-            this.registroProeedor.Size = new System.Drawing.Size(255, 26);
-            this.registroProeedor.Text = "Registro de proveedores";
-            this.registroProeedor.Click += new System.EventHandler(this.activosToolStripMenuItem_Click);
+            this.registroProveedor.Name = "registroProveedor";
+            this.registroProveedor.Size = new System.Drawing.Size(255, 26);
+            this.registroProveedor.Text = "Registro de proveedores";
+            this.registroProveedor.Click += new System.EventHandler(this.activosToolStripMenuItem_Click);
             // 
             // listadoReportesToolStripMenuItem
             // 
@@ -112,11 +111,10 @@
             this.lblUsuarioMain,
             this.lblUserTitle,
             this.lblDateMenu});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 424);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(19, 0, 1, 0);
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.statusStrip1.Size = new System.Drawing.Size(1067, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(800, 26);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -131,7 +129,6 @@
             this.lblUserTitle.Name = "lblUserTitle";
             this.lblUserTitle.Size = new System.Drawing.Size(41, 20);
             this.lblUserTitle.Text = ":User";
-            //this.lblUserTitle.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // lblDateMenu
             // 
@@ -145,12 +142,11 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
@@ -170,7 +166,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem gestiónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registroProeedor;
+        private System.Windows.Forms.ToolStripMenuItem registroProveedor;
         private System.Windows.Forms.ToolStripMenuItem listadoReportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proovedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuActivo;

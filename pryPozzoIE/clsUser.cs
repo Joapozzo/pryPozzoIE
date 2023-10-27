@@ -13,9 +13,12 @@ namespace pryPozzoIE
     internal class clsUser
     {
         //Guardamos datos del usuario actual
+
+        public int Id { get; set; }
         public string User { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
+        public string Rol { get; set; }
 
         public void ConectarBase()
         {
@@ -39,25 +42,35 @@ namespace pryPozzoIE
 
 
         //procedimiento validar usuario y contraseña
-        public static bool Login(string usuario, string contraseña)
+        public static clsUser Login(string usuario, string contraseña)
         {
             string rutaArchivo = @"../../archivos/usuarios.accdb";
             string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + rutaArchivo;
             using (OleDbConnection conn = new OleDbConnection(connectionString))
             {
                 conn.Open();
-                string sql = "SELECT COUNT(*) FROM Usuarios WHERE Usuario = @Usuario AND Contraseña = @Contraseña";
+                string sql = "SELECT IdUsuario, Usuario, Contraseña, Rol FROM Usuarios WHERE Usuario = ? AND Contraseña = ?";
                 using (OleDbCommand cmd = new OleDbCommand(sql, conn))
                 {
-
                     try
                     {
-                        cmd.Parameters.AddWithValue("@Usuario", usuario);
-                        cmd.Parameters.AddWithValue("@Contraseña", contraseña);
-                        int count = (int)cmd.ExecuteScalar();
-                        return count > 0;
+                        cmd.Parameters.AddWithValue("@p1", usuario);
+                        cmd.Parameters.AddWithValue("@p2", contraseña);
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                clsUser currentUser = new clsUser
+                                {
+                                    Id = reader.GetInt32(0),
+                                    User = reader.GetString(1),
+                                    Password = reader.GetString(2),
+                                    Rol = reader.GetString(3)
+                                };
+                                return currentUser;
+                            }
+                        }
                     }
-
                     catch (OleDbException ex)
                     {
                         MessageBox.Show(ex.Message);
@@ -65,7 +78,7 @@ namespace pryPozzoIE
                     }
                 }
             }
-
+            return null; // Devolver nulo si la autenticación falla
         }
 
         public static void RegisterLog(string usuario)
@@ -75,13 +88,13 @@ namespace pryPozzoIE
             sw.Close();
         }
 
-        public void MenuLog()
+        public void MenuLog(int idUsuario, DateTime fecha, string categoria)
         {
             string rutaArchivo = @"../../archivos/usuarios.accdb";
             string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + rutaArchivo;
 
             // Usar parámetros en lugar de insertar valores directamente en la sentencia SQL
-            string sql = "INSERT INTO Logs(IdUsuario, Fecha, Categoria) VALUES (1, #10/10/2023#, 'ADM')";
+            string sql = "INSERT INTO Logs(IdUsuario, Fecha, Categoria) VALUES (?, ?, ?)";
 
             try
             {
@@ -91,7 +104,10 @@ namespace pryPozzoIE
 
                     using (OleDbCommand cmd = new OleDbCommand(sql, conn))
                     {
-                        // Ejecutar la consulta
+                        cmd.Parameters.AddWithValue("param1", idUsuario);
+                        cmd.Parameters.AddWithValue("param2", fecha);
+                        cmd.Parameters.AddWithValue("param3", categoria);
+
                         cmd.ExecuteNonQuery();
                     }
                 }

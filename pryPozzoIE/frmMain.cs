@@ -31,13 +31,11 @@ namespace pryPozzoIE
             }
         }
 
-
-
         private void frmMain_Load(object sender, EventArgs e)
         {
             if (usuarioActual != null)
             {
-                lblUsuarioMain.Text = usuarioActual.UserName;
+                lblUsuarioMain.Text = usuarioActual.User;
             }
         }
 
@@ -55,10 +53,7 @@ namespace pryPozzoIE
 
         private void activosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //string ventana = menuActivo.Text;
-            //string user = usuarioActual.UserName;
-            //clsUser objMenuClick = new clsUser();
-            //objMenuClick.MenuLog(user, ventana);
+
         }
 
         private void activosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -66,10 +61,12 @@ namespace pryPozzoIE
             frmRegistroProveedor frmRegProv = new frmRegistroProveedor();
             frmRegProv.ShowDialog();
 
-            string ventana = registroProeedor.Text;
-            string user = usuarioActual.UserName;
+            int idUsuarioActual = usuarioActual.Id;
+            DateTime fechaLog = DateTime.Now;
+            string categoria = registroProveedor.Text;
+
             clsUser objMenuClick = new clsUser();
-            objMenuClick.MenuLog(); 
+            objMenuClick.MenuLog(idUsuarioActual, fechaLog, categoria);
         }
     }
 }
