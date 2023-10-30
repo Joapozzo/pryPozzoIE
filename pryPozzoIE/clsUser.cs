@@ -78,7 +78,7 @@ namespace pryPozzoIE
                     }
                 }
             }
-            return null; // Devolver nulo si la autenticación falla
+            return null;
         }
 
         public static void RegisterLog(string usuario)

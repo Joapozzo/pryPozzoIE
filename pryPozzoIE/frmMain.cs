@@ -62,7 +62,7 @@ namespace pryPozzoIE
             frmRegProv.ShowDialog();
 
             int idUsuarioActual = usuarioActual.Id;
-            DateTime fechaLog = DateTime.Now;
+            DateTime fechaLog = DateTime.Now.Date;
             string categoria = registroProveedor.Text;
 
             clsUser objMenuClick = new clsUser();
