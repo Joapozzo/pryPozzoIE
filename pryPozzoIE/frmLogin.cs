@@ -86,5 +86,12 @@ namespace pryPozzoIE
         {
 
         }
+
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            frmRegistrar fRegistrar = new frmRegistrar();
+            fRegistrar.ShowDialog();
+            this.Hide();
+        }
     }
 }

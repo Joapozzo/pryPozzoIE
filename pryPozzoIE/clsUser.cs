@@ -81,6 +81,50 @@ namespace pryPozzoIE
             return null;
         }
 
+        public void RegistrarUsuario(string user, string password, string rol) 
+        {
+            string rutaArchivo = @"../../archivos/usuarios.accdb";
+            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + rutaArchivo;
+            OleDbDataReader reader ;
+            using (OleDbConnection conn = new OleDbConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql1 = "SELECT Usuario FROM Usuarios" +
+                    "WHERE Usuario = " + user;
+
+
+
+                string sql = "INSERT INTO Usuarios(Usuario, Contraseña, Rol) VALUES (?, ?, ?)";
+                try
+                {
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        reader = cmd.ExecuteReader();
+
+                        if (!reader.HasRows)
+                        {
+                            cmd.Parameters.AddWithValue("param1", user);
+                            cmd.Parameters.AddWithValue("param2", password);
+                            cmd.Parameters.AddWithValue("param3", rol);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuario Existente");
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    conn.Close();
+                }
+            }
+        }
+
         public static void RegisterLog(string usuario)
         {
             StreamWriter sw = new StreamWriter("logInicio.txt", true);
