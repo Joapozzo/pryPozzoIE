@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="clsRegistroProveedor.cs" />
     <Compile Include="clsUser.cs" />
+    <Compile Include="frmActivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmActivos.Designer.cs">
+      <DependentUpon>frmActivos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmActivos.resx">
+      <DependentUpon>frmActivos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

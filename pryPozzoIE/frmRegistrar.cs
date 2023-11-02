@@ -27,10 +27,10 @@ namespace pryPozzoIE
             {            
                 string newUser = txtUsuario.Text;
                 string newPassword = txtContraseña.Text;
-                string newRetryPassword = txtRepetirContraseña.Text;
+                string rol = cmbRol.Text;
 
                 clsUser objUser = new clsUser();
-                objUser.RegistrarUsuario(newUser, newPassword, newRetryPassword);
+                objUser.RegistrarUsuario(newUser, newPassword, rol);
                 frmLogin fLogin = new frmLogin();
                 fLogin.ShowDialog();
                 this.Hide();
@@ -84,6 +84,11 @@ namespace pryPozzoIE
             {
                 btnRegistrar.Enabled = false;
             }
+        }
+
+        private void frmRegistrar_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

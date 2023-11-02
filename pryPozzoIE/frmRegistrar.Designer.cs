@@ -46,7 +46,7 @@
             this.btnRegistrar.Location = new System.Drawing.Point(219, 189);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(117, 34);
-            this.btnRegistrar.TabIndex = 9;
+            this.btnRegistrar.TabIndex = 4;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
@@ -58,7 +58,7 @@
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.PasswordChar = '*';
             this.txtContraseña.Size = new System.Drawing.Size(117, 20);
-            this.txtContraseña.TabIndex = 8;
+            this.txtContraseña.TabIndex = 2;
             this.txtContraseña.UseSystemPasswordChar = true;
             this.txtContraseña.TextChanged += new System.EventHandler(this.txtContraseña_TextChanged);
             // 
@@ -76,7 +76,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(37, 49);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(117, 20);
-            this.txtUsuario.TabIndex = 6;
+            this.txtUsuario.TabIndex = 0;
             this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // label1
@@ -95,7 +95,7 @@
             this.txtRepetirContraseña.Name = "txtRepetirContraseña";
             this.txtRepetirContraseña.PasswordChar = '*';
             this.txtRepetirContraseña.Size = new System.Drawing.Size(117, 20);
-            this.txtRepetirContraseña.TabIndex = 13;
+            this.txtRepetirContraseña.TabIndex = 3;
             this.txtRepetirContraseña.UseSystemPasswordChar = true;
             this.txtRepetirContraseña.TextChanged += new System.EventHandler(this.txtRepetirContraseña_TextChanged);
             // 
@@ -113,7 +113,7 @@
             this.btnVolver.Location = new System.Drawing.Point(37, 189);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(117, 34);
-            this.btnVolver.TabIndex = 14;
+            this.btnVolver.TabIndex = 5;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             // 
@@ -129,6 +129,7 @@
             // cmbRol
             // 
             this.cmbRol.AllowDrop = true;
+            this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRol.Enabled = false;
             this.cmbRol.FormattingEnabled = true;
             this.cmbRol.Items.AddRange(new object[] {
@@ -138,7 +139,7 @@
             this.cmbRol.Location = new System.Drawing.Point(219, 49);
             this.cmbRol.Name = "cmbRol";
             this.cmbRol.Size = new System.Drawing.Size(117, 21);
-            this.cmbRol.TabIndex = 17;
+            this.cmbRol.TabIndex = 1;
             this.cmbRol.SelectedIndexChanged += new System.EventHandler(this.cmbRol_SelectedIndexChanged);
             // 
             // frmRegistrar
@@ -159,6 +160,7 @@
             this.Name = "frmRegistrar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar";
+            this.Load += new System.EventHandler(this.frmRegistrar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

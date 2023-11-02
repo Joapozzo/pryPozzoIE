@@ -81,49 +81,41 @@ namespace pryPozzoIE
             return null;
         }
 
-        public void RegistrarUsuario(string user, string password, string rol) 
+        public void RegistrarUsuario(string user, string password, string rol)
         {
             string rutaArchivo = @"../../archivos/usuarios.accdb";
             string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + rutaArchivo;
-            OleDbDataReader reader ;
+
             using (OleDbConnection conn = new OleDbConnection(connectionString))
             {
                 conn.Open();
 
-                string sql1 = "SELECT Usuario FROM Usuarios" +
-                    "WHERE Usuario = " + user;
-
-
-
-                string sql = "INSERT INTO Usuarios(Usuario, Contraseña, Rol) VALUES (?, ?, ?)";
-                try
+                string sqlCheckUser = "SELECT Usuario FROM Usuarios WHERE Usuario = ?";
+                using (OleDbCommand cmdCheckUser = new OleDbCommand(sqlCheckUser, conn))
                 {
-                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    cmdCheckUser.Parameters.AddWithValue("param1", user);
+                    using (OleDbDataReader reader = cmdCheckUser.ExecuteReader())
                     {
-                        reader = cmd.ExecuteReader();
-
-                        if (!reader.HasRows)
-                        {
-                            cmd.Parameters.AddWithValue("param1", user);
-                            cmd.Parameters.AddWithValue("param2", password);
-                            cmd.Parameters.AddWithValue("param3", rol);
-
-                            cmd.ExecuteNonQuery();
-                        }
-                        else
+                        if (reader.HasRows)
                         {
                             MessageBox.Show("Usuario Existente");
+                            return; 
                         }
-
                     }
                 }
-                catch (Exception ex)
+
+                string sqlInsertUser = "INSERT INTO Usuarios(Usuario, Contraseña, Rol) VALUES (?, ?, ?)";
+                using (OleDbCommand cmdInsertUser = new OleDbCommand(sqlInsertUser, conn))
                 {
-                    MessageBox.Show(ex.Message);
-                    conn.Close();
+                    cmdInsertUser.Parameters.AddWithValue("param1", user);
+                    cmdInsertUser.Parameters.AddWithValue("param2", password);
+                    cmdInsertUser.Parameters.AddWithValue("param3", rol);
+
+                    cmdInsertUser.ExecuteNonQuery();
                 }
             }
         }
+
 
         public static void RegisterLog(string usuario)
         {

@@ -37,6 +37,12 @@ namespace pryPozzoIE
             {
                 lblUsuarioMain.Text = usuarioActual.User;
             }
+
+            if (usuarioActual.Rol != "Administrador")
+            {
+                gestiónToolStripMenuItem.Enabled = false;
+            }
+            
         }
 
         int contador = 0;
@@ -53,7 +59,8 @@ namespace pryPozzoIE
 
         private void activosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            frmActivos fActivos = new frmActivos();
+            fActivos.ShowDialog();
         }
 
         private void activosToolStripMenuItem_Click(object sender, EventArgs e)
