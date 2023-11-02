@@ -10,10 +10,9 @@ namespace pryPozzoIE
 {
     internal class clsRegistroProveedor
     {
-        public void Registrar(Int32 id, string entidad, DateTime apertura, int expediente, string juzg, string juri, string direccion, string liquidador)
+        public void Registrar(Int32 id, string entidad, DateTime apertura, string expediente, string juzg, string juri, string direccion, string liquidador)
         {
-            string archivoProveedor = "Listado de aseguradores.csv";
-
+            string archivoProveedor = @"../../archivos/Listado de aseguradores.csv";
             try
             {
                 // Crear una lista para almacenar los IDs existentes en el archivo
@@ -57,7 +56,7 @@ namespace pryPozzoIE
 
         public void Modificar(Int32 id, string entidad, DateTime apertura, string expediente, string juzg, string juri, string direccion, string liquidador)
         {
-            string archivoProveedor = "Listado de aseguradores.csv";
+            string archivoProveedor = @"../../archivos/Listado de aseguradores.csv";
 
             try
             {
@@ -101,7 +100,7 @@ namespace pryPozzoIE
 
         public void Eliminar(Int32 id)
         {
-            string archivoProveedor = "Listado de aseguradores.csv";
+            string archivoProveedor = @"../../archivos/Listado de aseguradores.csv";
 
             try
             {

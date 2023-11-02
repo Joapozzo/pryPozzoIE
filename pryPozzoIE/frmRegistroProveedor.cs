@@ -98,7 +98,7 @@ namespace pryPozzoIE
         {
             int Numero = int.Parse(txtNumeroRegistro.Text);
             string Entidad = txtEntidad.Text;
-            int Expediente = int.Parse(txtNumExpediente.Text);
+            string Expediente = txtNumExpediente.Text;
             string Juzgado = cmbJuzgado.Text;
             string Jurisdiccion = cmbJurisdiccion.Text;
             string Direccion = txtDireccion.Text;
